@@ -42,67 +42,29 @@
     notify: reload nagios
 
 # Copy the config files
-  - name: copy the CGI config
-    action: copy src=nagios/cgi.cfg dest=/etc/nagios/cgi.cfg
+  - name: copy nagios config
+    action: file src=nagios/$item dest=/etc/nagios/$item
     notify: reload nagios
-  - name: copy the nagios config
-    action: copy src=nagios/nagios.cfg dest=/etc/nagios/nagios.cfg
-    notify: reload nagios
-  - name: copy the resources config
-    action: copy src=nagios/private/resource.cfg dest=/etc/nagios/private/resource.cfg
-    notify: reload nagios
-
-  - name: copy the commands config
-    action: copy src=nagios/objects/commands.cfg dest=/etc/nagios/objects/commands.cfg
-    notify: reload nagios
-  - name: copy the contacts config
-    action: copy src=nagios/objects/contacts.cfg dest=/etc/nagios/objects/contacts.cfg
-    notify: reload nagios
-  - name: copy the hostgroups config
-    action: copy src=nagios/objects/hostgroups.cfg dest=/etc/nagios/objects/hostgroups.cfg
-    notify: reload nagios
-  - name: copy the templates config
-    action: copy src=nagios/objects/templates.cfg dest=/etc/nagios/objects/templates.cfg
-    notify: reload nagios
-  - name: copy the timeperiods config
-    action: copy src=nagios/objects/timeperiods.cfg dest=/etc/nagios/objects/timeperiods.cfg
-    notify: reload nagios
-
-# Copy over the hosts
-  - name: copy the ns1 config
-    action: copy src=nagios/objects/hosts/ns1.cfg dest=/etc/nagios/objects/hosts/ns1.cfg
-    notify: reload nagios
-  - name: copy the ns2 config
-    action: copy src=nagios/objects/hosts/ns2.cfg dest=/etc/nagios/objects/hosts/ns2.cfg
-    notify: reload nagios
-  - name: copy the localhost config
-    action: copy src=nagios/objects/hosts/localhost.cfg dest=/etc/nagios/objects/hosts/localhost.cfg
-    notify: reload nagios
-  - name: copy the 2tb config
-    action: copy src=nagios/objects/hosts/2tb.cfg dest=/etc/nagios/objects/hosts/2tb.cfg
-    notify: reload nagios
-  - name: copy the beaglebone config
-    action: copy src=nagios/objects/hosts/beaglebone.cfg dest=/etc/nagios/objects/hosts/beaglebone.cfg
-    notify: reload nagios
-  - name: copy the admin01 config
-    action: copy src=nagios/objects/hosts/admin01.cfg dest=/etc/nagios/objects/hosts/admin01.cfg
-    notify: reload nagios
-  - name: copy the danielhall.me config
-    action: copy src=nagios/objects/hosts/danielhall.me.cfg dest=/etc/nagios/objects/hosts/danielhall.me.cfg
-    notify: reload nagios
-  - name: copy the mumble config
-    action: copy src=nagios/objects/hosts/mumble.cfg dest=/etc/nagios/objects/hosts/mumble.cfg
-    notify: reload nagios
-  - name: copy the printer config
-    action: copy src=nagios/objects/hosts/printer.cfg dest=/etc/nagios/objects/hosts/printer.cfg
-    notify: reload nagios
-  - name: copy the router config
-    action: copy src=nagios/objects/hosts/router.cfg dest=/etc/nagios/objects/hosts/router.cfg
-    notify: reload nagios
-  - name: copy the vmhost config
-    action: copy src=nagios/objects/hosts/vmhost.cfg dest=/etc/nagios/objects/hosts/vmhost.cfg
-    notify: reload nagios
-
+    with_items:
+      - cgi.cfg
+      - nagios.cfg
+      - private/resource.cfg
+      - objects/commands.cfg
+      - objects/contacts.cfg
+      - objects/hostgroups.cfg
+      - objects/templates.cfg
+      - objects/timeperiods.cfg
+      - objects/hosts/ns1.cfg
+      - objects/hosts/ns2.cfg
+      - objects/hosts/localhost.cfg
+      - objects/hosts/2tb.cfg
+      - objects/hosts/beaglebone.cfg
+      - objects/hosts/admin01.cfg
+      - objects/hosts/danielhall.me.cfg
+      - objects/hosts/mumble.cfg
+      - objects/hosts/printer.cfg
+      - objects/hosts/router.cfg
+      - objects/hosts/vmhost.cfg
 
   handlers:
   - name: restart nagios
