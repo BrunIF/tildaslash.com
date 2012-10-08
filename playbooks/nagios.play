@@ -2,26 +2,25 @@
 - hosts: nagios
   tasks:
   - name: install nagios
-    action: yum name=nagios state=latest
+    action: yum name=$item state=latest
     notify: restart nagios
-
-  - name: install nagios plugins
-    action: yum name=nagios-plugins state=latest
-    notify: restart nagios
-  - action: yum name=nagios-plugins-dhcp state=latest
-  - action: yum name=nagios-plugins-disk state=latest
-  - action: yum name=nagios-plugins-dns state=latest
-  - action: yum name=nagios-plugins-hpjd state=latest
-  - action: yum name=nagios-plugins-http state=latest
-  - action: yum name=nagios-plugins-load state=latest
-  - action: yum name=nagios-plugins-ntp state=latest
-  - action: yum name=nagios-plugins-ping state=latest
-  - action: yum name=nagios-plugins-procs state=latest
-  - action: yum name=nagios-plugins-smtp state=latest
-  - action: yum name=nagios-plugins-ssh state=latest
-  - action: yum name=nagios-plugins-swap state=latest
-  - action: yum name=nagios-plugins-tcp state=latest
-  - action: yum name=nagios-plugins-users state=latest
+    with_items:
+      - nagios
+      - nagios-plugins
+      - nagios-plugins-dhcp
+      - nagios-plugins-disk
+      - nagios-plugins-dns
+      - nagios-plugins-hpjd
+      - nagios-plugins-http
+      - nagios-plugins-load
+      - nagios-plugins-ntp
+      - nagios-plugins-ping
+      - nagios-plugins-procs
+      - nagios-plugins-smtp
+      - nagios-plugins-ssh
+      - nagios-plugins-swap
+      - nagios-plugins-tcp
+      - nagios-plugins-users
 
   - name: Install apache
     action: yum name=httpd state=latest
@@ -31,15 +30,14 @@
   - name: remove the old conf.d directory
     action: file dest=/etc/nagios/conf.d state=absent
     notify: reload nagios
+
   - name: create the private directory
-    action: file dest=/etc/nagios/private state=directory
+    action: file dest=/etc/nagios/$item state=directory
     notify: reload nagios
-  - name: create the objects directory
-    action: file dest=/etc/nagios/objects state=directory
-    notify: reload nagios
-  - name: create the hosts directory
-    action: file dest=/etc/nagios/objects/hosts state=directory
-    notify: reload nagios
+    with_items:
+      - private
+      - objects
+      - objects/hosts
 
 # Copy the config files
   - name: copy nagios config
