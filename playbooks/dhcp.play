@@ -1,0 +1,21 @@
+---
+- hosts: dhcp
+  serial: 1
+  tasks:
+  - name: update to latest DHCP
+    action: yum name=dhcp state=latest
+    notify: restart dhcp
+
+  - name: copy the DHCP config
+    action: copy src=dhcp/dhcpd.conf dest=/etc/dhcp/dhcpd.conf
+    notify: restart dhcp
+    
+  - name: copy the DHCP Failover config
+    action: copy src=dhcp/failover/${ansible_hostname}.conf dest=/etc/dhcp/failover.conf
+    notify: restart dhcp
+
+  handlers:
+  - name: restart dhcp
+    action: service name=dhcpd state=restarted
+
+

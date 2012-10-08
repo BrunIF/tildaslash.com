@@ -1,0 +1,23 @@
+; 192.168.2.0/24
+$TTL 86400
+@       IN      SOA     ns1.int.tildaslash.com. daniel.danielhall.me.     (
+                       2012090701  ;serial
+                       14400       ;refresh
+                       3600        ;retry
+                       604800      ;expire
+                       10800       ;minimum
+)
+ 
+@	IN	NS	ns1.int.tildaslash.com.
+@	IN	NS	ns2.int.tildaslash.com.
+
+1	IN	PTR	vmnet.int.tildaslash.com.
+2	IN	PTR	ns1.int.tildaslash.com.
+3	IN	PTR	ns2.int.tildaslash.com.
+4	IN	PTR	admin01.int.tildaslash.com.
+5	IN	PTR	monitor01.int.tildaslash.com.
+6	IN	PTR	auth01.int.tildaslash.com.
+
+; DHCP
+$GENERATE 100-254 $ PTR vmdhcp$.int.tildaslash.com.
+

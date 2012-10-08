@@ -1,0 +1,65 @@
+options {
+	listen-on port 53 {
+           127.0.0.1;
+           {% for ip in ansible_all_ipv4_addresses %}
+           {{ ip }}
+           {% endfor %}
+           };
+	listen-on-v6 port 53 { ::1; };
+	directory 	"/var/named";
+	dump-file 	"/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+	allow-query     { localhost; 192.168.0.0/24; 192.168.2.0/24; };
+        forwarders {203.0.178.191; 203.215.29.191;};
+        forward only;
+
+	dnssec-enable no;
+	dnssec-validation no;
+	#dnssec-lookaside auto;
+
+	/* Path to ISC DLV key */
+	#bindkeys-file "/etc/named.iscdlv.key";
+
+	managed-keys-directory "/var/named/dynamic";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+	type hint;
+	file "named.ca";
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+
+{# Variables for zone config #}
+{% if 'ans' in group_names %}
+  {% set zone_type = 'master' %}
+  {% set zone_dir = 'data' %}
+{% else %}
+  {% set zone_type = 'slave' %}
+  {% set zone_dir = 'slaves' %}
+{% endif %}
+
+zone "int.tildaslash.com" IN {
+        type {{ zone_type }};
+        file "{{ zone_dir }}/int.tildaslash.com";
+};
+
+zone "0.168.192.in-addr.arpa" IN {
+	type {{ zone_type }};
+	file "{{ zone_dir }}/0.168.192.in-addr.arpa";
+};
+
+zone "2.168.192.in-addr.arpa" IN {
+	type {{ zone_type }};
+	file "{{ zone_dir }}/2.168.192.in-addr.arpa";
+};
+
