@@ -10,6 +10,8 @@
     action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=named
     notify: reload named
 
+  - name: set BIND to start
+    action: service name=named state=started enabled=yes
 
   handlers:
   - name: restart named
