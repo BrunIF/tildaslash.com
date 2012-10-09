@@ -17,6 +17,9 @@ $TTL 86400
 4	IN	PTR	admin01.int.tildaslash.com.
 5	IN	PTR	monitor01.int.tildaslash.com.
 6	IN	PTR	auth01.int.tildaslash.com.
+7	IN	PTR	ns3.int.tildaslash.com.
+8	IN	PTR	ns4.int.tildaslash.com.
+9	IN	PTR	ns5.int.tildaslash.com.
 
 ; DHCP
 $GENERATE 100-254 $ PTR vmdhcp$.int.tildaslash.com.
