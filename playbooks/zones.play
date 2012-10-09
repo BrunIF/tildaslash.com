@@ -7,7 +7,7 @@
     notify: restart named
 
   - name: install config file
-    action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=root
+    action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=named
     notify: reload named
 
 
@@ -20,10 +20,6 @@
 - hosts: ans
   serial: 1
   tasks:
-  - name: install config file
-    action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=root
-    notify: reload named
-
   - name: copy the internal zone
     action: copy src=zones/int.tildaslash.com dest=/var/named/data/int.tildaslash.com
     notify: reload named
