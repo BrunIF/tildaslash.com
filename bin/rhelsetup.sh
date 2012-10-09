@@ -8,5 +8,5 @@ if [ ! -r "${PUBLIC}" ]; then
 fi
 
 ssh-copy-id -i ${PUBLIC} root@${rhelhost}
-ssh ${rhelhost} -- yum -y install python-simplejson
+ssh root@${rhelhost} -- yum -y install python-simplejson
 
