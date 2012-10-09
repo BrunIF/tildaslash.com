@@ -1,6 +1,6 @@
 ---
-- hosts: ns
-  serial: 1
+- name: Install and setup bind
+  hosts: ns
   tasks:
   - name: install latest BIND
     action: yum name=bind state=latest
@@ -17,7 +17,8 @@
   - name: reload named
     action: service name=named state=reloaded
 
-- hosts: ans
+- name: Setup authoratative zones
+  hosts: ans
   serial: 1
   tasks:
   - name: copy the internal zone
