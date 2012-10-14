@@ -22,6 +22,10 @@
       - nagios-plugins-tcp
       - nagios-plugins-users
 
+  - name: Install extra scripts
+    action: file src=nagios/nma.pl dest=/usr/local/bin/nma.pl mode=755 owner=root group=root
+    notify: restart nagios
+
   - name: Install apache
     action: yum name=httpd state=latest
     notify: restart httpd
