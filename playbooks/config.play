@@ -3,8 +3,12 @@
   hosts: config01.int.tildaslash.com
   tasks:
   - name: install latest apache
-    action: yum name=httpd state=latest
+    action: yum name=$item state=latest
     notify: restart apache
+    with_items:
+      - httpd
+      - mod_dav_svn
+      - subversion
 
   - name: set apache to start on startup
     action: service name=httpd state=started enabled=yes
