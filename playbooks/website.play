@@ -1,0 +1,27 @@
+---
+- name: Install and setup the config service
+  hosts: admin01.int.tildaslash.com
+  tasks:
+  - name: install latest apache
+    action: yum name=httpd state=latest
+    notify: restart apache
+
+  - name: Create the kickstart directory
+    action: file dest=/var/www/html/ks state=directory mode=755 user=apache group=apache
+
+  - name: Copy in web files
+    action: copy src=website/$item dest=/var/www/html/$item mode=755 user=apache group=apache
+    with_items:
+      - index.html
+      - tildaslash.png
+      - ks/config01.cfg
+
+  - name: set apache to start on startup
+    action: service name=httpd state=started enabled=yes
+
+  handlers:
+  - name: restart apache
+    action: service name=httpd state=restarted
+  - name: reload apache
+    action: service name=httpd state=reloaded
+
