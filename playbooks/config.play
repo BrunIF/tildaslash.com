@@ -10,15 +10,15 @@
       - mod_dav_svn
       - subversion
 
-  - name: set apache to start on startup
-    action: service name=httpd state=started enabled=yes
-
   - name: Create the Subversion directory
     action: file dest=/var/www/svn state=directory mode=750 user=apache group=apache
 
   - name: install config file
     action: copy src=config/httpd.conf dest=/etc/httpd/conf/httpd.conf mode=644 owner=root group=root
     notify: reload apache
+
+  - name: set apache to start on startup
+    action: service name=httpd state=started enabled=yes
 
   handlers:
   - name: restart apache
