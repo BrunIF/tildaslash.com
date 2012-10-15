@@ -16,6 +16,10 @@
       - tildaslash.png
       - ks/config01.cfg
 
+  - name: Copy webserver config
+    action: copy src=website/httpd.conf dest=/etc/httpd/conf/httpd.conf mode=644 user=root group=root
+    notify: reload apache
+
   - name: set apache to start on startup
     action: service name=httpd state=started enabled=yes
 
