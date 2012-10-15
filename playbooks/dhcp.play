@@ -14,6 +14,9 @@
     action: copy src=dhcp/failover/${ansible_hostname}.conf dest=/etc/dhcp/failover.conf
     notify: restart dhcp
 
+  - name: start DHCP at boot
+    action: service name=dhcpd state=started enabled=yes
+
   handlers:
   - name: restart dhcp
     action: service name=dhcpd state=restarted
