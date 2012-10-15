@@ -45,7 +45,7 @@
 
 # Copy the config files
   - name: copy nagios config
-    action: file src=nagios/$item dest=/etc/nagios/$item
+    action: copy src=nagios/$item dest=/etc/nagios/$item
     notify: reload nagios
     with_items:
       - cgi.cfg
