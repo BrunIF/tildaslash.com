@@ -1,5 +1,7 @@
 ---
+- include: config.play
 - include: zones.play
 - include: dhcp.play
+- include: website.play
 - include: firewall.play
 - include: nagios.play
