@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2012090701 ; serial
+                       2012090702 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -12,6 +12,9 @@ $TTL 86400
 @		NS	ns1.int.tildaslash.com.
 @		NS	ns2.int.tildaslash.com.
 
+; Service based CNAMEs
+config		300	CNAME	config01
+
 ; Hosts on the VM subnet (192.168.2.0/24)
 @		300	A	192.168.2.1
 vmnet		300	A	192.168.2.1
@@ -20,9 +23,7 @@ ns2		300	A	192.168.2.3
 admin01		300	A	192.168.2.4
 monitor01	300	A	192.168.2.5
 auth01          300	A	192.168.2.6
-ns3		300	A	192.168.2.7
-ns4             300	A	192.168.2.8
-ns5             300	A	192.168.2.9
+config01	300	A	192.168.2.7
 
 ; Hosts on the Physical subnet (192.168.0.0/24)
 router		300	A	192.168.0.1
