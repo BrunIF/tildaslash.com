@@ -68,6 +68,13 @@
       - objects/hosts/router.cfg
       - objects/hosts/vmhost.cfg
 
+  - name: set nagios to start
+    action: service name=nagios state=started enabled=yes
+
+  - name: set apache to start
+    action: service name=httpd state=started enabled=yes
+
+
   handlers:
   - name: restart nagios
     action: service name=nagios state=restarted
