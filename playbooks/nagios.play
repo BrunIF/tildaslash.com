@@ -63,6 +63,7 @@
       - objects/hosts/beaglebone.cfg
       - objects/hosts/admin01.cfg
       - objects/hosts/danielhall.me.cfg
+      - objects/hosts/warbler.danielhall.me.cfg
       - objects/hosts/mumble.cfg
       - objects/hosts/printer.cfg
       - objects/hosts/router.cfg
