@@ -4,16 +4,26 @@
   tasks:
   - name: deploy config file
     action: copy src=openvpn/server.conf dest=/etc/openvpn/server.conf
+    notify: restart openvpn
 
   - name: set openvpn startup on boot
     action: service name=openvpn@server state=started enabled=yes
+
+  handlers:
+  - name: restart openvpn
+    action: name=openvpn@server state=restarted
 
 - name: Deploy OpenVPN clients
   hosts: openvpn-client
   tasks:
   - name: deploy config file
     action: copy src=openvpn/client.conf dest=/etc/openvpn/client.conf
+    notify: restart openvpn
 
   - name: set openvpn startup on boot
     action: service name=openvpn@client state=started enabled=yes
+
+  handlers:
+  - name: restart openvpn
+    action: name=openvpn@client state=restarted
 
