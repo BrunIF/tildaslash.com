@@ -25,5 +25,5 @@
 
   handlers:
   - name: restart openvpn
-    action: name=openvpn@client state=restarted
+    action: service name=openvpn@client state=restarted
 
