@@ -7,4 +7,5 @@ tildaslash.com
 - Make the VPN DNS better
 - Reverse DNS for the VPN
 - Give the VPN machines proper static IPs
+- Setup nagios to use the VPN to check hosts
 
