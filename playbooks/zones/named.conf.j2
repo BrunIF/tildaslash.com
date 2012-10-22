@@ -56,6 +56,14 @@ zone "int.tildaslash.com" IN {
 {% endif %}
 };
 
+zone "vpn.tildaslash.com" IN {
+        type {{ zone_type }};
+        file "{{ zone_dir }}/vpn.tildaslash.com";
+{% if 'ans' not in group_names %}
+	masters { 192.168.2.2; };
+{% endif %}
+};
+
 zone "0.168.192.in-addr.arpa" IN {
 	type {{ zone_type }};
 	file "{{ zone_dir }}/0.168.192.in-addr.arpa";

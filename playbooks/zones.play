@@ -24,16 +24,13 @@
   serial: 1
   tasks:
   - name: copy the internal zone
-    action: copy src=zones/int.tildaslash.com dest=/var/named/data/int.tildaslash.com
+    action: copy src=zones/$item dest=/var/named/data/$item
     notify: reload named
-    
-  - name: copy the vm subnet zone
-    action: copy src=zones/2.168.192.in-addr.arpa dest=/var/named/data/2.168.192.in-addr.arpa
-    notify: reload named
-    
-  - name: copy the physical subnet zone
-    action: copy src=zones/0.168.192.in-addr.arpa dest=/var/named/data/0.168.192.in-addr.arpa
-    notify: reload named
+    with_items:
+    - int.tildaslash.com
+    - vpn.tildaslash.com
+    - 2.168.192.in-addr.arpa
+    - 0.168.192.in-addr.arpa
     
   handlers:
   - name: reload named
