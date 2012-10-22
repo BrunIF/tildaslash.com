@@ -2,7 +2,7 @@
 - hosts: firewall
   tasks:
   - name: copy the firewall file
-    action: copy src=firewalls/${ansible_hostname}.conf dest=/etc/sysconfig/iptables
+    action: copy src=firewalls/${inventory_hostname}.conf dest=/etc/sysconfig/iptables
     notify: restart iptables
     
   handlers:
