@@ -2,16 +2,26 @@
 - name: Deploy OpenVPN server
   hosts: openvpn-server
   tasks:
+  - name: create config directory
+    action: file dest=/etc/openvpn/ccd state=directory
+    notify: restart openvpn
+
   - name: deploy config file
     action: copy src=openvpn/server.conf dest=/etc/openvpn/server.conf
     notify: restart openvpn
+
+  - name: deploy client configs
+    action: copy src=openvpn/ccd/$item dest=/etc/openvpn/ccd/$item
+    notify: restart openvpn
+    with_items:
+    - vmhost.int.tildaslash.com
 
   - name: set openvpn startup on boot
     action: service name=openvpn@server state=started enabled=yes
 
   handlers:
   - name: restart openvpn
-    action: name=openvpn@server state=restarted
+    action: service name=openvpn@server state=restarted
 
 - name: Deploy OpenVPN clients
   hosts: openvpn-client
