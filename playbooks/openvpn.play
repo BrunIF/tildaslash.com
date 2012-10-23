@@ -12,7 +12,6 @@
 
   - name: deploy client configs
     action: copy src=openvpn/ccd/$item dest=/etc/openvpn/ccd/$item
-    notify: restart openvpn
     with_items:
     - vmhost.int.tildaslash.com
 
