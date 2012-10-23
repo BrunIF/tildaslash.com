@@ -1,7 +1,7 @@
 ; 192.168.200.0/24
 $TTL 86400
 @       IN      SOA     ns1.int.tildaslash.com. daniel.danielhall.me.     (
-                       2012090702  ;serial
+                       2012102300  ;serial
                        14400       ;refresh
                        3600        ;retry
                        604800      ;expire
@@ -12,6 +12,11 @@ $TTL 86400
 @	IN	NS	ns2.int.tildaslash.com.
 
 1	PTR	warbler.vpn.tildaslash.com.
+2	PTR	warbler-r.vpn.tildaslash.com.
+
+9	PTR	dan-linode-r.vpn.tildaslash.com.
 10	PTR	dan-linode.vpn.tildaslash.com.
+
+13	PTR	vmhost-r.vpn.tildaslash.com.
 14	PTR	vmhost.vpn.tildaslash.com.
 
