@@ -14,6 +14,7 @@
     action: copy src=openvpn/ccd/$item dest=/etc/openvpn/ccd/$item
     with_items:
     - vmhost.int.tildaslash.com
+    - danielhall.me
 
   - name: set openvpn startup on boot
     action: service name=openvpn@server state=started enabled=yes
