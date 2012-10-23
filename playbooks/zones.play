@@ -30,6 +30,7 @@
     - int.tildaslash.com
     - vpn.tildaslash.com
     - 2.168.192.in-addr.arpa
+    - 200.168.192.in-addr.arpa
     - 0.168.192.in-addr.arpa
     
   handlers:

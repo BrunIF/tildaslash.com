@@ -80,3 +80,11 @@ zone "2.168.192.in-addr.arpa" IN {
 {% endif %}
 };
 
+zone "200.168.192.in-addr.arpa" IN {
+	type {{ zone_type }};
+	file "{{ zone_dir }}/200.168.192.in-addr.arpa";
+{% if 'ans' not in group_names %}
+	masters { 192.168.2.2; };
+{% endif %}
+};
+
