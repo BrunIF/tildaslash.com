@@ -7,11 +7,16 @@
     with_items:
       - nrpe
       - nagios-plugins
+      - nagios-plugins-users
       - nagios-plugins-dhcp
       - nagios-plugins-disk
       - nagios-plugins-load
       - nagios-plugins-procs
       - nagios-plugins-swap
+
+  - name: setup the nrpe config file
+    action: template src=nrpe/nrpe.cfg.j2 dest=/etc/nagios/nrpe.cfg
+    notify: reload nrpe
 
   - name: set nagios to start
     action: service name=nrpe state=started enabled=yes
