@@ -1,4 +1,6 @@
 ---
+- include: nrpe.play
+
 - hosts: nagios
   tasks:
   - name: install nagios
@@ -21,6 +23,7 @@
       - nagios-plugins-swap
       - nagios-plugins-tcp
       - nagios-plugins-users
+      - nagios-plugins-nrpe
 
   - name: Install extra scripts
     action: file src=nagios/nma.pl dest=/usr/local/bin/nma.pl mode=755 owner=root group=root
