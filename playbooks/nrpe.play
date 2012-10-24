@@ -1,0 +1,24 @@
+---
+- hosts: nrpe
+  tasks:
+  - name: install nrpe
+    action: yum name=$item state=latest
+    notify: restart nrpe
+    with_items:
+      - nrpe
+      - nagios-plugins
+      - nagios-plugins-dhcp
+      - nagios-plugins-disk
+      - nagios-plugins-load
+      - nagios-plugins-procs
+      - nagios-plugins-swap
+
+  - name: set nagios to start
+    action: service name=nrpe state=started enabled=yes
+
+  handlers:
+  - name: restart nrpe
+    action: service name=nrpe state=restarted
+  - name: reload nrpe
+    action: service name=nrpe state=reloaded
+
