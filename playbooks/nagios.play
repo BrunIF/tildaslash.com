@@ -73,8 +73,19 @@
       - objects/hosts/vmhost.cfg
       - objects/hosts/config01.cfg
 
+  - name: Install nsca
+    action: yum name=nsca state=latest
+    notify: restart nsca
+
+  - name: setup the nsca config file
+    action: copy src=nagios/nsca.cfg dest=/etc/nagios/nsca.cfg
+    notify: restart nsca
+
   - name: set nagios to start
     action: service name=nagios state=started enabled=yes
+
+  - name: set nsca to start
+    action: service name=nsca state=started enabled=yes
 
   - name: set apache to start
     action: service name=httpd state=started enabled=yes
@@ -85,6 +96,8 @@
     action: service name=nagios state=restarted
   - name: restart httpd
     action: service name=httpd state=restarted
+  - name: restart nsca
+    action: service name=nsca state=restarted
   - name: reload nagios
     action: service name=nagios state=reloaded
   - name: reload httpd
