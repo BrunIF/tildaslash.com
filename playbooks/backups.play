@@ -1,0 +1,18 @@
+---
+- name: Install and setup the backup service
+  hosts: admin01.int.tildaslash.com
+  tasks:
+  - name: install latest apache
+    action: yum name=$item state=installed
+    with_items:
+      - nsca-client
+      - rdiff-backup
+
+  - name: Copy in the backups script
+    action: copy src=backups/wrap_rdiff dest=/usr/local/sbin/wrap_rdiff mode=750 user=root group=root
+
+  - name: install danielhall.me crons
+    action: cron name="Backup danielhall.me:/www"   job="/usr/local/sbin/wrap_rdiff danielhall.me /www"   hour=0 minute=0
+    action: cron name="Backup danielhall.me:/home"  job="/usr/local/sbin/wrap_rdiff danielhall.me /home"  hour=0 minute=0
+    action: cron name="Backup danielhall.me:/etc"   job="/usr/local/sbin/wrap_rdiff danielhall.me /etc"   hour=0 minute=0
+

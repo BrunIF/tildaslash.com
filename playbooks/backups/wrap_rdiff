@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Command line
+HOST="$1"
+DIR="$2"
+
+# Config
+BACKDIR=/opt/backups
+NAGHOST=monitor01.int.tildaslash.com
+
+# Executables
+SENDNSCA=/usr/sbin/send_nsca
+MKDIR=/bin/mkdir
+RDIFFBACKUP=/bin/rdiff-backup
+
+# Check for root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+# Make a directory for the backup
+$MKDIR -p ${BACKDIR}/${HOST}${DIR}
+
+# Perform the rdiff backup
+$RDIFFBACKUP ${HOST}::${DIR} ${BACKDIR}/${HOST}${DIR}
+
+# Tell nagios
+if [[ $? -eq 0 ]]; then
+  STATUS='completed'
+  RETURN=0 # OK
+else
+  STATUS='failed'
+  RETURN=2 # CRITICAL
+fi
+
+echo -e "$(hostname -s)\tBackup-${HOST}-${DIR}\t${RETURN}\tBackup ${STATUS} at $(date)\n" | $SENDNSCA -H ${NAGHOST} > /dev/null
+
+
+
