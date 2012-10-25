@@ -5,8 +5,9 @@
   - name: install software
     action: yum name=$item state=installed
     with_items:
-      - nsca-client
       - rdiff-backup
+# Don't touch this till fedora fix it
+#      - nsca-client
 
   - name: Copy in the backups script
     action: copy src=backups/wrap_rdiff dest=/usr/local/sbin/wrap_rdiff mode=750 user=root group=root
