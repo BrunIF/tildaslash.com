@@ -74,8 +74,11 @@
       - objects/hosts/config01.cfg
 
   - name: Install nsca
-    action: yum name=nsca state=latest
+    action: yum name=$item state=latest
     notify: restart nsca
+    with_items:
+      - nsca
+      - nsca-client
 
   - name: setup the nsca config file
     action: copy src=nagios/nsca.cfg dest=/etc/nagios/nsca.cfg
