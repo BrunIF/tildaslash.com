@@ -1,6 +1,4 @@
 ---
-- include: nrpe.play
-
 - hosts: nagios
   tasks:
   - name: install nagios
