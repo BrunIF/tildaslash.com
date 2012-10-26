@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Command line
+ME="$(basename $0)"
 HOST="$1"
 DIR="$2"
 
@@ -19,20 +20,36 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-# Make a directory for the backup
-$MKDIR -p ${BACKDIR}/${HOST}${DIR}
+# Get a lock
+LOCKFILE="/tmp/${ME}-${HOST}-$(echo ${DIR} | tr / _)"
+if ( set -o noclobber; echo "$$" > "$LOCKFILE") 2> /dev/null; 
+then
+  # Remove the lock file if we get killed
+  trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT
 
-# Perform the rdiff backup
-$RDIFFBACKUP ${HOST}::${DIR} ${BACKDIR}/${HOST}${DIR}
+  # Make a directory for the backup
+  $MKDIR -p ${BACKDIR}/${HOST}${DIR}
+  
+  # Perform the rdiff backup
+  $RDIFFBACKUP ${HOST}::${DIR} ${BACKDIR}/${HOST}${DIR}
 
-# Tell nagios
-if [[ $? -eq 0 ]]; then
-  STATUS='completed'
-  RETURN=0 # OK
+  # We've done our tricky bit, unlock
+  rm -f "$LOCKFILE"
+  trap - INT TERM EXIT
+
+  # Tell nagios
+  if [[ $? -eq 0 ]]; then
+    STATUS='completed'
+    RETURN=0 # OK
+  else
+    STATUS='failed'
+    RETURN=2 # CRITICAL
+  fi
 else
-  STATUS='failed'
+  STATUS='could not get lock'
   RETURN=2 # CRITICAL
 fi
+
 
 echo -e "$(hostname -s)\tBackup-${HOST}-${DIR}\t${RETURN}\tBackup ${STATUS} at $(date)\n" | $SENDNSCA -H ${NAGHOST} > /dev/null
 
