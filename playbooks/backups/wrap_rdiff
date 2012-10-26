@@ -1,6 +1,15 @@
 #!/bin/bash
 
-# Command line
+# Rdiff wrapper script to provide locking, and monitoring to rdiff-backup
+# Author: Daniel Hall <daniel@danielhall.me>
+
+# Execution: ./wrap_rdiff server.name.com.au /directory/to/backup
+
+# TODO:
+#   - Getopt command line parsing
+#   - More control over rdiff-backup
+
+# Command line args
 ME="$(basename $0)"
 HOST="$1"
 DIR="$2"
@@ -50,8 +59,5 @@ else
   RETURN=2 # CRITICAL
 fi
 
-
 echo -e "$(hostname -s)\tBackup-${HOST}-${DIR}\t${RETURN}\tBackup ${STATUS} at $(date)\n" | $SENDNSCA -H ${NAGHOST} > /dev/null
-
-
 
