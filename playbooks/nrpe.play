@@ -18,7 +18,7 @@
     action: template src=nrpe/nrpe.cfg.j2 dest=/etc/nagios/nrpe.cfg
     notify: reload nrpe
 
-  - name: set nagios to start
+  - name: set nrpe to start
     action: service name=nrpe state=started enabled=yes
 
   handlers:
