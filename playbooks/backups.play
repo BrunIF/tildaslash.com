@@ -21,3 +21,9 @@
   - name: install danielhall.me:/etc cron
     action: cron name="Backup danielhall.me:/etc"   job="/usr/local/sbin/wrap_rdiff danielhall.me /etc"   hour=1 minute=15
 
+  - name: install admin01.int.tildaslash.com:/home cron
+    action: cron name="Backup admin01.int.tildaslash.com"   job="/usr/local/sbin/wrap_rdiff admin01.int.tildaslash.com /home" hour=2 minute=0
+
+  - name: install config01.int.tildaslash.com:/var/www/svn cron
+    action: cron name="Backup config01.int.tildaslash.com"   job="/usr/local/sbin/wrap_rdiff config01.int.tildaslash.com /var/www/svn" hour=2 minute=15
+
