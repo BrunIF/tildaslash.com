@@ -60,7 +60,6 @@
       - objects/hosts/ns1.cfg
       - objects/hosts/ns2.cfg
       - objects/hosts/localhost.cfg
-      - objects/hosts/2tb.cfg
       - objects/hosts/beaglebone.cfg
       - objects/hosts/admin01.cfg
       - objects/hosts/danielhall.me.cfg
