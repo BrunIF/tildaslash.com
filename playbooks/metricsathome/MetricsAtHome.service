@@ -1,0 +1,13 @@
+[Unit]
+Description=The daemon running the display
+ConditionPathExists=|/opt/MetricsAtHome
+
+[Service]
+WorkingDirectory=/opt/MetricsAtHome
+Environment=PYTHONPATH=.
+ExecStart=/usr/bin/python bin/metricsathome
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

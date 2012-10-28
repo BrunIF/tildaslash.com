@@ -1,0 +1,36 @@
+---
+- name: Deploy the MetricsAtHome software
+  hosts: metrics
+  tasks:
+  - name: Install dependencies
+    action: yum name=$item state=latest
+    with_items:
+    - python-suds
+    - python-imaging
+    - python-dateutil
+    - pyusb
+    - PyYAML
+    - python-simplejson
+
+  - name: Checkout the code
+    action: git repo=git@github.com:smarthall/MetricsAtHome.git dest=/opt/MetricsAtHome
+    notify: restart MetricsAtHome
+
+  - name: Checkout the config
+    action: git repo=git@github.com:smarthall/MetricsAtHomeConfig.git dest=/opt/MetricsAtHomeConfig
+    notify: restart MetricsAtHome
+
+  - name: Link to the config file
+    action: file dest=/etc/metricsathome.yaml src=/opt/MetricsAtHomeConfig/${inventory_hostname}/metricsathome.yaml state=link
+    notify: restart MetricsAtHome
+
+  - name: Install the service file
+    action: copy src=metricsathome/MetricsAtHome.service dest=/lib/systemd/system/MetricsAtHome.service mode=644 owner=root group=root
+    notify: restart MetricsAtHome
+
+  - name: Set MetricsAtHome to start
+    action: service name=MetricsAtHome state=started enabled=true
+
+  handlers:
+  - name: restart MetricsAtHome
+    action: service name=MetricsAtHome state=restarted
