@@ -1,7 +1,7 @@
 ; 192.168.0.0/24
 $TTL 86400
 @       IN      SOA     ns1.int.tildaslash.com. daniel.danielhall.me.     (
-                       2012082203  ;serial
+                       2012110401  ;serial
                        14400       ;refresh
                        3600        ;retry
                        604800      ;expire
@@ -13,6 +13,7 @@ $TTL 86400
 
 1	IN	PTR	router.int.tildaslash.com.
 2	IN	PTR	2tb.int.tildaslash.com.
+3	IN	PTR	xbee.int.tildaslash.com.
 
 6	IN	PTR	printer.int.tildaslash.com.
 
