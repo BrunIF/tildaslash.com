@@ -6,23 +6,28 @@
     action: yum name=httpd state=latest
     notify: restart apache
 
+  - name: install latest php
+    action: yum name=php state=latest
+
   - name: Create subdirectories
-    action: file dest=/var/www/html/$item state=directory mode=755 user=apache group=apache
+    action: file dest=/var/www/html/$item state=directory mode=755 owner=apache group=apache
     with_items:
     - ks
     - fridge
+    - fridge/data
 
   - name: Copy in web files
-    action: copy src=website/$item dest=/var/www/html/$item mode=755 user=apache group=apache
+    action: copy src=website/$item dest=/var/www/html/$item mode=755 owner=apache group=apache
     with_items:
       - index.html
       - tildaslash.png
       - ks/config01.cfg
       - fridge/boot.php
       - fridge/temp.php
+      - fridge/index.html
 
   - name: Copy webserver config
-    action: copy src=website/httpd.conf dest=/etc/httpd/conf/httpd.conf mode=644 user=root group=root
+    action: copy src=website/httpd.conf dest=/etc/httpd/conf/httpd.conf mode=644 owner=root group=root
     notify: reload apache
 
   - name: set apache to start on startup
