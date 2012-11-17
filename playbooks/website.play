@@ -8,6 +8,7 @@
 
   - name: install latest php
     action: yum name=php state=latest
+    notify: restart apache
 
   - name: Create subdirectories
     action: file dest=/var/www/html/$item state=directory mode=755 owner=apache group=apache
