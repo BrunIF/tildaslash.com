@@ -2,13 +2,14 @@
 - name: Install and setup the config service
   hosts: admin01.int.tildaslash.com
   tasks:
-  - name: install latest apache
-    action: yum name=httpd state=latest
+  - name: install latest software
+    action: yum name=$item state=latest
     notify: restart apache
-
-  - name: install latest php
-    action: yum name=php state=latest
-    notify: restart apache
+    with_items:
+    - httpd
+    - php
+    - rrdtool
+    - rrdtool-php 
 
   - name: Create subdirectories
     action: file dest=/var/www/html/$item state=directory mode=755 owner=apache group=apache
