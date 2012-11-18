@@ -34,17 +34,17 @@ if (!file_exists('data/weight.rrd')) {
 }
 if (array_key_exists('tempA', $_GET)) {
   file_put_contents('data/tempA', $_GET['tempA']);
-  rrd_update('data/tempA.rrd', 'N:' . $_GET['tempA'])
+  rrd_update('data/tempA.rrd', 'N:' . $_GET['tempA']);
 }
 
 if (array_key_exists('tempB', $_GET)) {
   file_put_contents('data/tempB', $_GET['tempB']);
-  rrd_update('data/tempB.rrd', 'N:' . $_GET['tempB'])
+  rrd_update('data/tempB.rrd', 'N:' . $_GET['tempB']);
 }
 
 if (array_key_exists('weight', $_GET)) {
   file_put_contents('data/weight', $_GET['weight']);
-  rrd_update('data/weight.rrd', 'N:' . $_GET['weight'])
+  rrd_update('data/weight.rrd', 'N:' . $_GET['weight']);
 }
 
 ?>Y
