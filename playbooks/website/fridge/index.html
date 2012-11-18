@@ -11,7 +11,11 @@
         $('#tempB').html(data);
       });
       $.get('data/weight', function(data) {
-        $('#weight').html(data);
+        val = parseInt(data);
+        if (val > 300) val = 300;
+        if (val < 15) val = 15;
+        val = Math.round((val - 15) /285 * 100);
+        $('#weight').html(val);
       });
     }
 
@@ -23,7 +27,7 @@
 <ul>
   <li>Freezer = <span id='tempA'>NaN</span>&deg;C</li>
   <li>Fridge = <span id='tempB'>NaN</span>&deg;C</li>
-  <li>Milk = <span id='weight'>NaN</span></li>
+  <li>Milk = <span id='weight'>NaN</span>%</li>
 </ul>
 </body>
 </html>
