@@ -15,15 +15,15 @@
       });
     }
 
-    updateData();
+    window.setInterval("updateData();",10000);
   </script>
 </head>
-<body>
+<body onload="updateData();">
 <h1>Fridge Monitoring</h1>
 <ul>
-  <li><a href='data/tempA'>Freezer</a> - <span id='tempA'>NaN</span></li>
-  <li><a href='data/tempB'>Fridge</a> - <span id='tempB'>NaN</span></li>
-  <li><a href='data/weight'>Milk</a> - <span id='weight'>NaN</span></li>
+  <li>Freezer = <span id='tempA'>NaN</span>&deg;C</li>
+  <li>Fridge = <span id='tempB'>NaN</span>&deg;C</li>
+  <li>Milk = <span id='weight'>NaN</span></li>
 </ul>
 </body>
 </html>
