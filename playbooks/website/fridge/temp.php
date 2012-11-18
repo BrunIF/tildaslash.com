@@ -3,9 +3,9 @@
 if (!file_exists('data/tempA.rrd')) {
   $options = array(
      '--step', '10',
-     'DS:tempa:GAUGE:10:-40:100',
-     'RRA:AVERAGE:0.5:6:1440',
-     'RRA:AVERAGE:0.5:360:168'
+     'DS:tempa:GAUGE:60:-40:100',
+     'RRA:AVERAGE:0.5:1:1440',
+     'RRA:AVERAGE:0.5:60:168'
   );
 
   rrd_create('data/tempA.rrd', $options, count($options));
@@ -14,9 +14,9 @@ if (!file_exists('data/tempA.rrd')) {
 if (!file_exists('data/tempB.rrd')) {
   $options = array(
      '--step', '10',
-     'DS:tempb:GAUGE:10:-40:100',
-     'RRA:AVERAGE:0.5:6:1440',
-     'RRA:AVERAGE:0.5:360:168'
+     'DS:tempb:GAUGE:60:-40:100',
+     'RRA:AVERAGE:0.5:1:1440',
+     'RRA:AVERAGE:0.5:60:168'
   );
 
   rrd_create('data/tempB.rrd', $options, count($options));
@@ -25,9 +25,9 @@ if (!file_exists('data/tempB.rrd')) {
 if (!file_exists('data/weight.rrd')) {
   $options = array(
      '--step', '10',
-     'DS:weight:GAUGE:10:0:1024',
-     'RRA:AVERAGE:0.5:6:1440',
-     'RRA:AVERAGE:0.5:360:168'
+     'DS:weight:GAUGE:60:0:1024',
+     'RRA:AVERAGE:0.5:1:1440',
+     'RRA:AVERAGE:0.5:60:168'
   );
 
   rrd_create('data/weight.rrd', $options, count($options));
