@@ -26,6 +26,7 @@
       - ks/config01.cfg
       - fridge/boot.php
       - fridge/temp.php
+      - fridge/graph.php
       - fridge/index.html
 
   - name: Copy webserver config
