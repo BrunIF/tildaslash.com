@@ -7,6 +7,8 @@ $filename = '/tmp/out' . rand(0,999) . '.png';
 $options = array(
    '--start', '-2h',
    '--no-legend',
+   '--width', '640',
+   '--height', '480',
 );
 
 if (array_key_exists('tempA', $_GET)) {
