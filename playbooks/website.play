@@ -12,11 +12,8 @@
     - rrdtool-php 
 
   - name: Create subdirectories
-    action: file dest=/var/www/html/$item state=directory mode=755 owner=apache group=apache
+    action: file dest=/var/www/html/ks state=directory mode=755 owner=apache group=apache
     with_items:
-    - ks
-    - fridge
-    - fridge/data
 
   - name: Copy in web files
     action: copy src=website/$item dest=/var/www/html/$item mode=755 owner=apache group=apache
@@ -24,10 +21,12 @@
       - index.html
       - tildaslash.png
       - ks/config01.cfg
-      - fridge/boot.php
-      - fridge/temp.php
-      - fridge/graph.php
-      - fridge/index.html
+
+  - name: Checkout the code
+    action: git repo=git@github.com:smarthall/glassfridge.git dest=/var/www/glassfridge
+
+  - name: Link in the fridge code
+    action: file src=/var/www/html/fridge dest=/var/www/glassfridge/web
 
   - name: Copy webserver config
     action: copy src=website/httpd.conf dest=/etc/httpd/conf/httpd.conf mode=644 owner=root group=root
