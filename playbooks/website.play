@@ -13,7 +13,6 @@
 
   - name: Create subdirectories
     action: file dest=/var/www/html/ks state=directory mode=755 owner=apache group=apache
-    with_items:
 
   - name: Copy in web files
     action: copy src=website/$item dest=/var/www/html/$item mode=755 owner=apache group=apache
@@ -23,10 +22,13 @@
       - ks/config01.cfg
 
   - name: Checkout the code
-    action: git repo=git@github.com:smarthall/glassfridge.git dest=/var/www/glassfridge
+    action: git force=no repo=git@github.com:smarthall/glassfridge.git dest=/var/www/glassfridge
+
+  - name: Create data directory
+    action: file dest=/var/www/glassfridge/web/data state=directory mode=755 owner=apache group=apache
 
   - name: Link in the fridge code
-    action: file src=/var/www/html/fridge dest=/var/www/glassfridge/web
+    action: file dest=/var/www/html/fridge src=/var/www/glassfridge/web state=link
 
   - name: Copy webserver config
     action: copy src=website/httpd.conf dest=/etc/httpd/conf/httpd.conf mode=644 owner=root group=root
