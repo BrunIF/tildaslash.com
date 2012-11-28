@@ -1,0 +1,29 @@
+---
+- name: Install pydeploy
+  hosts: admin01.int.tildaslash.com
+  tasks:
+  - name: install latest software
+    action: yum name=$item state=latest
+    notify: restart pydeploy
+    with_items:
+    - python-cherrypy 
+
+  - name: Setup systemd
+    action: copy src=pydeploy/pydeploy.service dest=/lib/systemd/system/pydeploy.service
+    notify: restart pydeploy
+
+  - name: Configure pydeploy
+    action: copy src=pydeploy/pydeploy.yaml dest=/etc/pydeploy.yaml
+    notify: restart pydeploy
+
+  - name: Checkout the code
+    action: git force=no repo=git@github.com:smarthall/pyGHDeploy.git dest=/opt/pyGHDeploy
+    notify: restart pydeploy
+
+  - name: set apache to start on startup
+    action: service name=pydeploy state=started enabled=yes
+
+  handlers:
+  - name: restart pydeploy
+    action: service name=pydeploy state=restarted
+
