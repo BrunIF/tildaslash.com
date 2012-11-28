@@ -3,7 +3,7 @@
   hosts: metrics
   tasks:
   - name: Install dependencies
-    action: yum name=$item state=latest
+    action: yum name=$item state=installed
     with_items:
     - python-suds
     - python-imaging
