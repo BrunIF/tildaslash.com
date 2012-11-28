@@ -12,4 +12,10 @@ githubrepo:
     args:
       arg1: True
       arg2: "Friday"
+  - name: "MetricsAtHomeConfig"
+    file: ".*"
+    action: command
+    args:
+      - "/bin/sleep"
+      - "15"
 
