@@ -25,5 +25,5 @@
 
   handlers:
   - name: restart pydeploy
-    action: service name=pydeploy state=restarted
+    action: command systemctl --no-block restart pydeploy.service
 
