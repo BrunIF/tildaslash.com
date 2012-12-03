@@ -11,19 +11,19 @@ githubrepo:
 
   - name: "MetricsAtHome"
     file: ".*"
-    action: argprint
+    action: ansible
     args:
-      arg1: True
-      arg2: "Friday"
+      ansiblerepo: "git@github.com:smarthall/tildaslash.com.git"
+      filename: "playbooks/metricsathome.play"
 
 
 
   - name: "MetricsAtHomeConfig"
     file: ".*"
-    action: command
+    action: ansible
     args:
-      - "/bin/sleep"
-      - "15"
+      ansiblerepo: "git@github.com:smarthall/tildaslash.com.git"
+      filename: "playbooks/metricsathome.play"
 
 
 
