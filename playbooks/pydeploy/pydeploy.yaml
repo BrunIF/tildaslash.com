@@ -29,8 +29,8 @@ githubrepo:
 
   - name: "pyGHDeploy"
     file: ".*"
-    action: command
+    action: ansible
     args:
-      - "/usr/bin/ansible-playbook"
-      - "/home/daniel/src/tildaslash.com/playbooks/pydeploy.play"
+      ansiblerepo: "git@github.com:smarthall/tildaslash.com.git"
+      filename: "playbooks/pydeploy.play"
 
