@@ -60,7 +60,7 @@
       - objects/hosts/ns1.cfg
       - objects/hosts/ns2.cfg
       - objects/hosts/localhost.cfg
-      - objects/hosts/beaglebone.cfg
+      - objects/hosts/beaglebone2.cfg
       - objects/hosts/admin01.cfg
       - objects/hosts/danielhall.me.cfg
       - objects/hosts/warbler.danielhall.me.cfg
@@ -69,6 +69,12 @@
       - objects/hosts/router.cfg
       - objects/hosts/vmhost.cfg
       - objects/hosts/config01.cfg
+
+  - name: remove old nagios config
+    action: file path=/etc/nagios/$item state=absent
+    notify: reload nagios
+    with_items:
+      - objects/hosts/beaglebone.cfg
 
   - name: Install nsca
     action: yum name=$item state=latest
