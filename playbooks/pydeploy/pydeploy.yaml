@@ -6,16 +6,31 @@ githubrepo:
     args:
       - /bin/sleep
       - "15"
+
+
+
   - name: "MetricsAtHome"
     file: ".*"
     action: argprint
     args:
       arg1: True
       arg2: "Friday"
+
+
+
   - name: "MetricsAtHomeConfig"
     file: ".*"
     action: command
     args:
       - "/bin/sleep"
       - "15"
+
+
+
+  - name: "pyGHDeploy"
+    file: ".*"
+    action: command
+    args:
+      - "/usr/bin/ansible-playbook"
+      - "/home/daniel/src/tildaslash.com/playbooks/pydeploy.play"
 
