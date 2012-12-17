@@ -70,6 +70,10 @@
       - objects/hosts/vmhost.cfg
       - objects/hosts/config01.cfg
 
+  - name: copy apache config
+    action: copy src=nagios/httpd.conf dest=/etc/httpd/conf.d/nagios.conf
+    notify: reload httpd
+
   - name: remove old nagios config
     action: file path=/etc/nagios/$item state=absent
     notify: reload nagios
