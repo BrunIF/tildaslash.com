@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2012102902 ; serial
+                       2012102903 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -39,6 +39,8 @@ mumble		300	A	192.168.0.25
 
 beaglebone	300	A	192.168.0.30
 beaglebone2	300	A	192.168.0.31
+
+ninja01		300	A	192.168.0.50
 
 ; DHCP hosts
 $GENERATE 200-250 dhcp$   A       192.168.0.$
