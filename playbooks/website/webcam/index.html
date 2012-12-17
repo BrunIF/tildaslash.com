@@ -14,6 +14,7 @@ body {
   color : #00c000;
   font-family : Courier, monospace;
   font-weight : bold;
+  text-align : center;
 }
 
 a:link {
@@ -40,9 +41,14 @@ a:hover {
 </head>
 <body>
 <h1>~/ Webcams</h1>
-<ul>
-  <li><a href="/webcam/tv?action=stream">TV Webcam</a></li>
-  <li><a href="/webcam/lamp?action=stream">Lamp Webcam</a></li>
+<p>
+<div id="tv"><a href="/webcam/tv?action=stream">
+<img height="60" width="80" src="/webcam/tv?action=snapshot" /><br />
+TV Webcam</a></div>
+<div id="lamp">
+<a href="/webcam/lamp?action=stream">
+<img height="60" width="80" src="/webcam/lamp?action=snapshot" /><br />
+Lamp Webcam</a></div>
 </ul>
 </body>
 </html>
