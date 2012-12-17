@@ -12,7 +12,10 @@
     - rrdtool-php 
 
   - name: Create subdirectories
-    action: file dest=/var/www/html/ks state=directory mode=755 owner=apache group=apache
+    action: file dest=/var/www/html/$item state=directory mode=755 owner=apache group=apache
+    with_items:
+      - ks
+      - webcam
 
   - name: Copy in web files
     action: copy src=website/$item dest=/var/www/html/$item mode=755 owner=apache group=apache
@@ -20,6 +23,7 @@
       - index.html
       - tildaslash.png
       - ks/config01.cfg
+      - webcam/index.html
 
   - name: Checkout the code
     action: git force=no repo=git@github.com:smarthall/glassfridge.git dest=/var/www/glassfridge
