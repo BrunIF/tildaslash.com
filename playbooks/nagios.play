@@ -64,11 +64,9 @@
       - objects/hosts/admin01.cfg
       - objects/hosts/danielhall.me.cfg
       - objects/hosts/warbler.danielhall.me.cfg
-      - objects/hosts/mumble.cfg
       - objects/hosts/printer.cfg
       - objects/hosts/router.cfg
       - objects/hosts/vmhost.cfg
-      - objects/hosts/config01.cfg
 
   - name: copy apache config
     action: copy src=nagios/httpd.conf dest=/etc/httpd/conf.d/nagios.conf
@@ -79,6 +77,8 @@
     notify: reload nagios
     with_items:
       - objects/hosts/beaglebone.cfg
+      - objects/hosts/mumble.cfg
+      - objects/hosts/config01.cfg
 
   - name: Install nsca
     action: yum name=$item state=latest
