@@ -23,6 +23,7 @@
       - index.html
       - tildaslash.png
       - ks/config01.cfg
+      - ks/smtp01.cfg
       - webcam/index.html
 
   - name: Checkout the code
