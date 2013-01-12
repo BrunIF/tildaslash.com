@@ -11,3 +11,5 @@ DATABASES = {
     }
 }
 
+STATIC_ROOT = '/opt/apps/Qroud/static'
+
