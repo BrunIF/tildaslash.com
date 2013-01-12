@@ -54,6 +54,10 @@
     action: copy src=qroud/local_settings.py dest=/opt/apps/Qroud/local_settings.py
 
   handlers:
+  - name: sync db
+    action: command chdir=/opt/apps/Qroud ./manage.py syncdb
+  - name: generate static
+    action: command chdir=/opt/apps/Qroud ./manage.py collectstatic -c --noinput
   - name: restart httpd
     action: service name=httpd state=restarted
   - name: reload httpd
@@ -62,9 +66,5 @@
     action: service name=mysqld state=restarted
   - name: reload mysql
     action: service name=mysqld state=reloaded
-  - name: sync db
-    action: command chdir=/opt/apps/Qroud ./manage.py syncdb
-  - name: generate static
-    action: command chdir=/opt/apps/Qroud ./manage.py collectstatic -c --noinput
 
 
