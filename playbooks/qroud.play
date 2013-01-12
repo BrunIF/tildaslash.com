@@ -28,6 +28,7 @@
     notify:
       - sync db
       - generate static
+      - restart httpd
 
   - name: create static dir
     action: file dest=/opt/apps/Qroud/static state=directory
