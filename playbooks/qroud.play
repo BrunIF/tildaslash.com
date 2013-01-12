@@ -1,0 +1,61 @@
+---
+- hosts: qroud
+  tasks:
+  - name: install apache/mysql/python
+    action: yum name=$item state=latest
+    notify:
+      - restart httpd
+      - restart mysql
+    with_items:
+      - httpd
+      - python-setuptools
+      - mod_wsgi
+      - MySQL-python
+      - mysql-server
+      - mysql
+      - Django14
+      - git
+
+  - name: copy apache config
+    action: copy src=qroud/httpd.conf dest=/etc/httpd/conf.d/qroud.conf
+    notify: reload httpd
+
+  - name: create directories
+    action: file dest=/opt/apps state=directory
+
+  - name: checkout Qroud
+    action: git repo=git@github.com:smarthall/Qroud.git dest=/opt/apps/Qroud force=no
+    notify: sync db
+
+  - name: set mysql to start
+    action: service name=mysqld state=started enabled=yes
+
+  - name: set apache to start
+    action: service name=httpd state=started enabled=yes
+
+  - name: create MySQL database
+    action: mysql_db db=qroud state=present
+    notify: sync db
+
+  - name: remove MySQL test database
+    action: mysql_db db=test state=absent
+
+  - name: create MySQL user
+    action: mysql_user name=qroud password=jointheqroud priv=qroud.*:ALL state=present
+
+  - name: setup Qroud
+    action: copy src=qroud/local_settings.py dest=/opt/apps/Qroud/local_settings.py
+
+  handlers:
+  - name: restart httpd
+    action: service name=httpd state=restarted
+  - name: reload httpd
+    action: service name=httpd state=reloaded
+  - name: restart mysql
+    action: service name=mysqld state=restarted
+  - name: reload mysql
+    action: service name=mysqld state=reloaded
+  - name: sync db
+    action: command chdir=/opt/apps/Qroud ./manage.py syncdb
+
+
