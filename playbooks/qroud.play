@@ -56,9 +56,7 @@
 
   handlers:
   - name: migrate db
-    action: command chdir=/opt/apps/Qroud ./manage.py migrate $item
-    with_items:
-      - quiz
+    action: command chdir=/opt/apps/Qroud ./manage.py migrate --all
   - name: generate static
     action: command chdir=/opt/apps/Qroud ./manage.py collectstatic -c --noinput
   - name: restart httpd
