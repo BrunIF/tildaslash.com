@@ -14,6 +14,7 @@
       - mysql-server
       - mysql
       - Django14
+      - Django-south
       - git
 
   - name: copy apache config
@@ -54,8 +55,10 @@
     action: copy src=qroud/local_settings.py dest=/opt/apps/Qroud/local_settings.py
 
   handlers:
-  - name: sync db
-    action: command chdir=/opt/apps/Qroud ./manage.py syncdb
+  - name: migrate db
+    action: command chdir=/opt/apps/Qroud ./manage.py migrate $item
+    with_items:
+      - quiz
   - name: generate static
     action: command chdir=/opt/apps/Qroud ./manage.py collectstatic -c --noinput
   - name: restart httpd
