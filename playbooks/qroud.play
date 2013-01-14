@@ -27,7 +27,7 @@
   - name: checkout Qroud
     action: git repo=git@github.com:smarthall/Qroud.git dest=/opt/apps/Qroud force=no
     notify:
-      - sync db
+      - migrate db
       - generate static
       - restart httpd
 
@@ -43,7 +43,7 @@
 
   - name: create MySQL database
     action: mysql_db db=qroud state=present
-    notify: sync db
+    notify: migrate db
 
   - name: remove MySQL test database
     action: mysql_db db=test state=absent
