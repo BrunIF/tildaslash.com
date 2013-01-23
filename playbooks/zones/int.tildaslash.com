@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2013011201 ; serial
+                       2013011202 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -27,6 +27,7 @@ config01	300	A	192.168.2.7
 admin02		300	A	192.168.2.8
 smtp01		300	A	192.168.2.9
 qroud01		300	A	192.168.2.10
+ns3		300	A	192.168.2.11
 
 ; Hosts on the Physical subnet (192.168.0.0/24)
 router		300	A	192.168.0.1
