@@ -25,6 +25,7 @@
       - ks/config01.cfg
       - ks/smtp01.cfg
       - ks/qroud01.cfg
+      - ks/ns3.cfg
       - webcam/index.html
 
   - name: Checkout the code
