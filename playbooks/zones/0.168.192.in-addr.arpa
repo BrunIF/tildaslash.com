@@ -1,7 +1,7 @@
 ; 192.168.0.0/24
 $TTL 86400
 @       IN      SOA     ns1.int.tildaslash.com. daniel.danielhall.me.     (
-                       2012121701  ;serial
+                       2013020901  ;serial
                        14400       ;refresh
                        3600        ;retry
                        604800      ;expire
@@ -20,6 +20,7 @@ $TTL 86400
 15	IN	PTR	vmhost.int.tildaslash.com.
 
 25	IN	PTR	mumble.int.tildaslash.com.
+26	IN  PTR atticus.int.tildaslash.com.
 
 30	IN	PTR	beaglebone.int.tildaslash.com.
 31	IN	PTR	beaglebone2.int.tildaslash.com.

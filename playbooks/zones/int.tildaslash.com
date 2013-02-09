@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2013011202 ; serial
+                       2013020901 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -39,6 +39,7 @@ printer		300	A	192.168.0.6
 vmhost		300	A	192.168.0.15
 
 mumble		300	A	192.168.0.25
+atticus		300 A 	192.168.0.26
 
 beaglebone	300	A	192.168.0.30
 beaglebone2	300	A	192.168.0.31
