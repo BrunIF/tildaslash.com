@@ -26,6 +26,8 @@
       - ks/smtp01.cfg
       - ks/qroud01.cfg
       - ks/ns3.cfg
+      - ks/rattic.cfg
+      - ks/rattic-test.cfg
       - webcam/index.html
 
   - name: Checkout the code
