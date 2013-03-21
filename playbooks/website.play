@@ -28,6 +28,7 @@
       - ks/ns3.cfg
       - ks/rattic.cfg
       - ks/rattic-test.cfg
+      - ks/ansible-extralvmspace-centos64.cfg
       - webcam/index.html
 
   - name: Checkout the code
