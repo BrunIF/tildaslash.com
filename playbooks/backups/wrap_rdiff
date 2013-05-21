@@ -19,7 +19,7 @@ BACKDIR=/opt/backups
 NAGHOST=monitor01.int.tildaslash.com
 
 # Executables
-SENDNSCA=/usr/sbin/send_nsca
+SENDNSCA=/usr/local/bin/send_nsca
 MKDIR=/bin/mkdir
 RDIFFBACKUP=/bin/rdiff-backup
 
