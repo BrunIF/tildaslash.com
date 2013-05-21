@@ -10,10 +10,10 @@
 #      - nsca-client
 
   - name: Copy in the backups script
-    action: copy src=backups/wrap_rdiff dest=/usr/local/sbin/wrap_rdiff mode=750 user=root group=root
+    action: copy src=backups/wrap_rdiff dest=/usr/local/sbin/wrap_rdiff mode=750 owner=root group=root
 
   - name: Copy a working version of send_nsca in
-    action: copy src=backups/send_nsca dest=/usr/local/bin/send_nsca mode=755 user=root group=root
+    action: copy src=backups/send_nsca dest=/usr/local/bin/send_nsca mode=755 owner=root group=root
 
   - name: install danielhall.me:/www cron
     action: cron name="Backup danielhall.me:/www"   job="/usr/local/sbin/wrap_rdiff danielhall.me /www"   hour=0 minute=0

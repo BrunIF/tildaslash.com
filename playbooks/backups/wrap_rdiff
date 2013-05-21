@@ -17,6 +17,7 @@ DIR="$2"
 # Config
 BACKDIR=/opt/backups
 NAGHOST=monitor01.int.tildaslash.com
+SENDNSCACFG=/etc/nagios/send_nsca.cfg
 
 # Executables
 SENDNSCA=/usr/local/bin/send_nsca
@@ -59,5 +60,5 @@ else
   RETURN=2 # CRITICAL
 fi
 
-echo -e "$(hostname -s)\tBackup-${HOST}-${DIR}\t${RETURN}\tBackup ${STATUS} at $(date)\n" | $SENDNSCA -H ${NAGHOST} > /dev/null
+echo -e "$(hostname -s)\tBackup-${HOST}-${DIR}\t${RETURN}\tBackup ${STATUS} at $(date)\n" | $SENDNSCA -H ${NAGHOST} -c ${SENDNSCACFG} > /dev/null
 
