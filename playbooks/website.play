@@ -30,6 +30,7 @@
       - ks/rattic.cfg
       - ks/rattic-test.cfg
       - ks/ansible-extralvmspace-centos64.cfg
+      - ks/mqtt01.cfg
       - webcam/index.html
 
   - name: Checkout the code
