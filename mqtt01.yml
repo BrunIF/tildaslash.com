@@ -1,0 +1,5 @@
+---
+- name: Setup danielhall.me
+  hosts: mqtt01
+  roles:
+   - mqtt
