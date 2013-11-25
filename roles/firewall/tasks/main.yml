@@ -1,4 +1,8 @@
 ---
 - name: copy the firewall file
-  action: copy src=${inventory_hostname}.iptables dest=/etc/sysconfig/iptables
+  copy: src=${inventory_hostname}.iptables dest=/etc/sysconfig/iptables
+  notify: restart iptables
+
+- name: start iptables
+  service: name=iptables state=started enabled=yes
 

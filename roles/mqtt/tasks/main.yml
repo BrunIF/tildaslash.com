@@ -2,8 +2,16 @@
 - name: Setup the mqtt repo
   copy: src=mqtt.repo dest=/etc/yum.repos.d/mqtt.repo mode=644 owner=root group=root
 
+- name: Configure mqtt
+  copy: src=mosquitto.conf dest=/etc/mosquitto/mosquitto.conf mode=640 owner=root group=root
+  notify:
+   - restart mqtt
+
 - name: Install mosquitto
-  yum: name=mosquitto state=installed
+  yum: name={{item}} state=installed
+  with_items:
+   - mosquitto
+   - mosquitto-clients
 
 - name: Start mosquitto
   service: name=mosquitto state=started enabled=yes
