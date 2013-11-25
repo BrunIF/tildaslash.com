@@ -1,0 +1,5 @@
+---
+- name: Setup vmhost
+  hosts: vmhost
+  roles:
+   - firewall

@@ -1,3 +1,3 @@
 ---
 - name: restart mqtt
-  service: name=mosquitto state=reloaded
+  service: name=mosquitto state=restarted

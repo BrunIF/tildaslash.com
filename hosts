@@ -1,2 +1,5 @@
 [mqtt]
 mqtt01.int.tildaslash.com
+
+[vmhost]
+vmhost.int.tildaslash.com

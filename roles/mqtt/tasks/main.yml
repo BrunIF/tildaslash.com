@@ -7,6 +7,11 @@
   notify:
    - restart mqtt
 
+- name: Copy password across
+  copy: src=passwd dest=/etc/mosquitto/passwd mode=644 owner=root group=root
+  notify:
+   - restart mqtt
+
 - name: Install mosquitto
   yum: name={{item}} state=installed
   with_items:
