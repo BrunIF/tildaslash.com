@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2013071301 ; serial
+                       2013112501 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -32,6 +32,7 @@ rattic		300	A	192.168.2.12
 rattic-test	300	A	192.168.2.13
 windows01	300	A	192.168.2.14
 ansibletest	300	A	192.168.2.15
+mqtt01	300	A	192.168.2.16
 
 ; Hosts on the Physical subnet (192.168.0.0/24)
 router		300	A	192.168.0.1

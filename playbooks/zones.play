@@ -7,7 +7,7 @@
     notify: restart named
 
   - name: install config file
-    action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=named
+    action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=named setype=_default selevel=_default serole=_default seuser=_default
     notify: reload named
 
   - name: set BIND to start

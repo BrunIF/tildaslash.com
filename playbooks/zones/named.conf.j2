@@ -10,7 +10,7 @@ options {
 	dump-file 	"/var/named/data/cache_dump.db";
         statistics-file "/var/named/data/named_stats.txt";
         memstatistics-file "/var/named/data/named_mem_stats.txt";
-	allow-query     { localhost; 192.168.0.0/24; 192.168.2.0/24; };
+	allow-query     { localhost; 192.168.0.0/24; 192.168.2.0/24; 192.168.200.0/24;};
         forwarders {203.0.178.191; 203.215.29.191;};
         forward only;
 

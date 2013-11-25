@@ -1,7 +1,7 @@
 ; 192.168.2.0/24
 $TTL 86400
 @       IN      SOA     ns1.int.tildaslash.com. daniel.danielhall.me.     (
-                       2013071301  ;serial
+                       2013112501  ;serial
                        14400       ;refresh
                        3600        ;retry
                        604800      ;expire
@@ -26,6 +26,7 @@ $TTL 86400
 13	IN	PTR	rattic-test.int.tildaslash.com.
 14	IN	PTR	windows01.int.tildaslash.com.
 15	IN	PTR	ansibletest.int.tildaslash.com.
+16	IN	PTR	mqtt01.int.tildaslash.com.
 
 ; DHCP
 $GENERATE 100-254 $ PTR vmdhcp$.int.tildaslash.com.
