@@ -1,2 +1,9 @@
 ---
+- name: Setup the mqtt repo
+  copy: src=mqtt.repo dest=/etc/yum.repos.d/mqtt.repo mode=644 owner=root group=root
 
+- name: Install mosquitto
+  yum: name=mosquitto state=installed
+
+- name: Start mosquitto
+  service: name=mosquitto state=started enabled=yes

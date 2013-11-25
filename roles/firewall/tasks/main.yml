@@ -1,0 +1,4 @@
+---
+- name: copy the firewall file
+  action: copy src=${inventory_hostname}.iptables dest=/etc/sysconfig/iptables
+
