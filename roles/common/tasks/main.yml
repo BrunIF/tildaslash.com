@@ -1,0 +1,3 @@
+---
+- name: install python-selinux
+  yum: name=libselinux-python state=installed
