@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2013112501 ; serial
+                       2013122301 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -38,6 +38,7 @@ mqtt01	300	A	192.168.2.16
 router		300	A	192.168.0.1
 2tb		300	A	192.168.0.2
 xbee		300	A	192.168.0.3
+homepass		300	A	192.168.0.4
 
 printer		300	A	192.168.0.6
 

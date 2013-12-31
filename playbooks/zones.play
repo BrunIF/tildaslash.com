@@ -6,6 +6,9 @@
     action: yum name=bind state=latest
     notify: restart named
 
+  - name: Install libselinux
+    yum: name=libselinux-python state=installed
+
   - name: install config file
     action: template src=zones/named.conf.j2 dest=/etc/named.conf mode=640 owner=root group=named setype=_default selevel=_default serole=_default seuser=_default
     notify: reload named

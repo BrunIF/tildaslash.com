@@ -33,6 +33,9 @@
       - ks/mqtt01.cfg
       - webcam/index.html
 
+  - name: Enable Apache homedirs
+    seboolean: name=httpd_enable_homedirs state=yes persistent=yes
+
   - name: Checkout the code
     action: git force=no repo=git@github.com:smarthall/glassfridge.git dest=/var/www/glassfridge
 
