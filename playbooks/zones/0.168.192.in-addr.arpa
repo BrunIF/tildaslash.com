@@ -21,8 +21,9 @@ $TTL 86400
 15	IN	PTR	vmhost.int.tildaslash.com.
 
 25	IN	PTR	mumble.int.tildaslash.com.
-26	IN  	PTR 	atticus.int.tildaslash.com.
-27	IN  	PTR 	ducktop.int.tildaslash.com.
+26	IN  PTR atticus.int.tildaslash.com.
+27	IN  PTR ducktop.int.tildaslash.com.
+28  IN  PTR netbook.int.tildaslash.com.
 
 30	IN	PTR	beaglebone.int.tildaslash.com.
 31	IN	PTR	beaglebone2.int.tildaslash.com.

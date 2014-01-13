@@ -1,7 +1,7 @@
 ; int.tildaslash.com
 $TTL 86400
 @	IN	SOA	ns1.int.tildaslash.com. daniel.danielhall.me. (
-                       2013122301 ; serial
+                       2014011401 ; serial
                        14400      ; refresh
                        14400      ; update
                        1209600    ; expiry
@@ -16,37 +16,38 @@ $TTL 86400
 config		300	CNAME	config01
 
 ; Hosts on the VM subnet (192.168.2.0/24)
-@		300	A	192.168.2.1
+@		    300	A	192.168.2.1
 vmnet		300	A	192.168.2.1
-ns1		300	A	192.168.2.2
-ns2		300	A	192.168.2.3
+ns1		    300	A	192.168.2.2
+ns2		    300	A	192.168.2.3
 admin01		300	A	192.168.2.4
 monitor01	300	A	192.168.2.5
-auth01          300	A	192.168.2.6
+auth01      300	A	192.168.2.6
 config01	300	A	192.168.2.7
 admin02		300	A	192.168.2.8
 smtp01		300	A	192.168.2.9
 qroud01		300	A	192.168.2.10
-ns3		300	A	192.168.2.11
+ns3		    300	A	192.168.2.11
 rattic		300	A	192.168.2.12
 rattic-test	300	A	192.168.2.13
 windows01	300	A	192.168.2.14
 ansibletest	300	A	192.168.2.15
-mqtt01	300	A	192.168.2.16
+mqtt01	    300	A	192.168.2.16
 
 ; Hosts on the Physical subnet (192.168.0.0/24)
 router		300	A	192.168.0.1
-2tb		300	A	192.168.0.2
+2tb		    300	A	192.168.0.2
 xbee		300	A	192.168.0.3
-homepass		300	A	192.168.0.4
+homepass	300	A	192.168.0.4
 
 printer		300	A	192.168.0.6
 
 vmhost		300	A	192.168.0.15
 
-mumble		300	A	192.168.0.25
-atticus		300 	A 	192.168.0.26
-ducktop		300 	A 	192.168.0.27
+mumble		300	A   192.168.0.25
+atticus		300 A   192.168.0.26
+ducktop		300 A   192.168.0.27
+netbook     300 A   192.168.0.28
 
 beaglebone	300	A	192.168.0.30
 beaglebone2	300	A	192.168.0.31
